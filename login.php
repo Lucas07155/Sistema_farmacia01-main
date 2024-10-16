@@ -14,7 +14,7 @@
     <div class="container mt-5">
         <h1 class="text-center mb-4">ÁREA DE LOGIN</h1>
         
-        <?php if (isset($_GET['erro'])): ?> <!-- Exibe a mensagem de erro se existir -->
+        <?php if (isset($_GET['erro'])): ?>
             <div class="alert alert-danger"><?php echo $_GET['erro']; ?></div>
         <?php endif; ?>
 

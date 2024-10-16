@@ -1,8 +1,13 @@
- <!--Desenvolvido por Lucas De Carvalho Praxedes-->
-  <!--DATA 13/10/2024 -->
-  <!--Professor: Luís Alberto Pires de Oliveira-->
+ <!-- Desenvolvido por Lucas De Carvalho Praxedes -->
+<!-- DATA 13/10/2024 -->
+<!-- Professor: Luís Alberto Pires de Oliveira -->
 <?php 
 require 'conexao.php';
+
+if (isset($_POST['vender'])) {
+    require 'vender.php'; 
+}
+
 $search = isset($_POST['search']) ? $_POST['search'] : '';
 $sql = $pdo->prepare("SELECT * FROM medicamentos WHERE produto LIKE :search");
 $sql->bindValue(':search', '%' . $search . '%');
@@ -21,7 +26,7 @@ $lista = $sql->fetchAll(PDO::FETCH_ASSOC);
 <body>
     <div class="container mt-5">
         <h1 class="text-center mb-4">Lista de Medicamentos</h1>
-        <form method="POST" class="mb-3">
+                <form method="POST" class="mb-3">
             <div class="input-group">
                 <input type="text" name="search" class="form-control" placeholder="Buscar medicamento" value="<?php echo $search; ?>">
                 <div class="input-group-append">
@@ -29,6 +34,21 @@ $lista = $sql->fetchAll(PDO::FETCH_ASSOC);
                 </div>
             </div>
         </form>
+        <form method="POST" class="mb-4">
+            <div class="form-row">
+                <div class="col-md-5">
+                    <input type="number" name="id_produto" class="form-control" placeholder="ID do Produto" required>
+                </div>
+                <div class="col-md-5">
+                    <input type="number" name="quantidade" class="form-control" placeholder="Quantidade a Vender" required>
+                </div>
+                <div class="col-md-2">
+                    <button type="submit" name="vender" class="btn btn-sm btn-danger">Vender</button>
+                </div>
+            </div>
+        </form>
+
+        <!-- Tabela de medicamentos -->
         <div class="table-responsive">
             <table class="table table-bordered table-hover">
                 <thead class="thead-light">
@@ -62,7 +82,8 @@ $lista = $sql->fetchAll(PDO::FETCH_ASSOC);
         </div>
         <div class="text-right mt-3">
             <a href="cadastrar_medicamento.php" class="btn btn-sm btn-danger">Cadastrar Novo Medicamento</a>
+            <a href="relatorio_vendas.php" class="btn btn-sm btn-danger">Relatório de Vendas</a>
         </div>
     </div>
 </body>
-</html> 
+</html>
