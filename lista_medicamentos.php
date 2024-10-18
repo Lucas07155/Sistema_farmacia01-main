@@ -1,13 +1,11 @@
- <!-- Desenvolvido por Lucas De Carvalho Praxedes -->
+   <!-- Desenvolvido por Lucas De Carvalho Praxedes -->
 <!-- DATA 13/10/2024 -->
 <!-- Professor: Luís Alberto Pires de Oliveira -->
 <?php 
 require 'conexao.php';
-
 if (isset($_POST['vender'])) {
     require 'vender.php'; 
 }
-
 $search = isset($_POST['search']) ? $_POST['search'] : '';
 $sql = $pdo->prepare("SELECT * FROM medicamentos WHERE produto LIKE :search");
 $sql->bindValue(':search', '%' . $search . '%');
@@ -25,12 +23,12 @@ $lista = $sql->fetchAll(PDO::FETCH_ASSOC);
 </head>
 <body>
     <div class="container mt-5">
-        <h1 class="text-center mb-4">Lista de Medicamentos</h1>
+        <h1 class="text-center mb-4">LISTA DE MEDICAMENTOS</h1>
                 <form method="POST" class="mb-3">
             <div class="input-group">
                 <input type="text" name="search" class="form-control" placeholder="Buscar medicamento" value="<?php echo $search; ?>">
                 <div class="input-group-append">
-                    <button type="submit" class="btn btn-sm btn-danger">Buscar</button>
+                    <button type="submit" class="btn btn-sm btn-danger" >Buscar medicamento</button>
                 </div>
             </div>
         </form>
@@ -43,23 +41,21 @@ $lista = $sql->fetchAll(PDO::FETCH_ASSOC);
                     <input type="number" name="quantidade" class="form-control" placeholder="Quantidade a Vender" required>
                 </div>
                 <div class="col-md-2">
-                    <button type="submit" name="vender" class="btn btn-sm btn-danger">Vender</button>
+                    <button type="submit" name="vender" class="btn btn-sm btn-danger">Vender medicamento</button>
                 </div>
             </div>
         </form>
-
-        <!-- Tabela de medicamentos -->
         <div class="table-responsive">
             <table class="table table-bordered table-hover">
                 <thead class="thead-light">
                     <tr>
-                        <th>ID</th>
-                        <th>Produto</th>
+                        <th>Id_produto:</th>
+                        <th>Produto:</th>
                         <th>Preço</th>
-                        <th>Quantidade</th>
-                        <th>Validade</th>
-                        <th>Categoria</th>
-                        <th>Ações</th>
+                        <th>Quantidade:</th>
+                        <th>Validade:</th>
+                        <th>Categoria:</th>
+                        <th>Ações:</th>
                     </tr>
                 </thead>
                 <tbody>

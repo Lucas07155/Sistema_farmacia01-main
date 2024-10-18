@@ -1,6 +1,9 @@
+ <!--Desenvolvido por Lucas De Carvalho Praxedes-->
+  <!--DATA 13/10/2024 -->
+  <!--Professor: Luís Alberto Pires de Oliveira-->
+
 <?php 
 require 'conexao.php';
-
 $sql = $pdo->prepare("SELECT medicamentos.produto, SUM(vendas.quantidade_vendida) AS total_vendido 
                       FROM vendas 
                       INNER JOIN medicamentos ON vendas.id_produto = medicamentos.id_produto 
@@ -19,17 +22,15 @@ $vendas = $sql->fetchAll(PDO::FETCH_ASSOC);
 </head>
 <body>
     <div class="container mt-5">
-        <h1 class="text-center mb-4">Relatório de Vendas</h1>
-
+        <h1 class="text-center mb-4">RELATÓRIO DE VENDAS</h1>
         <?php if (isset($_GET['erro'])): ?>
             <div class="alert alert-danger"><?php echo $_GET['erro']; ?></div>
         <?php endif; ?>
-        
         <table class="table table-bordered table-hover">
             <thead class="thead-light">
                 <tr>
-                    <th>Produto</th>
-                    <th>Total Vendido</th>
+                    <th>Produto:</th>
+                    <th>Total Vendido:</th>
                 </tr>
             </thead>
             <tbody>
@@ -41,8 +42,7 @@ $vendas = $sql->fetchAll(PDO::FETCH_ASSOC);
                 <?php endforeach; ?>
             </tbody>
         </table>
-        <a href="lista_medicamentos.php" class="btn btn-sm btn-danger">Voltar</a>
-
+        <a href="lista_medicamentos.php" class="btn btn-sm btn-danger">Voltar pra lista de medicamentos</a>
     </div>
  </body>
 </html>

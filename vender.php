@@ -1,6 +1,5 @@
 <?php 
 require 'conexao.php';
-
 if (isset($_POST['vender'])) {
     $idProduto = $_POST['id_produto'];
     $quantidadeVendida = $_POST['quantidade'];
